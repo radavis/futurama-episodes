@@ -1,5 +1,16 @@
 import React, { createContext, useReducer } from 'react';
 
+// get/set favorites in local browser storage
+const getFavorites = favorites => {
+  const result = localStorage.getItem('favorites');
+  if (!result) return [];
+  return JSON.parse(result);
+};
+
+const setFavorites = favorites => {
+  return localStorage.setItem('favorites', JSON.stringify(favorites));
+};
+
 // Store object
 // The context object to which child components will subscribe.
 // Created via the React.createContext() function
@@ -7,23 +18,25 @@ const Store = createContext();
 
 const initialState = {
   episodes: [],
-  favorites: []
+  favorites: getFavorites()
 };
 
 // reducer function
 // Input: state, action
-// Output: updated state object
+// Output: updated state object, updated localStorage
 const reducer = (state, action) => {
+  let favorites;
   switch (action.type) {
     case 'ADD_FAVORITE':
-      return { ...state, favorites: [...state.favorites, action.payload] };
+      favorites = [...state.favorites, action.payload];
+      setFavorites(favorites);
+      return { ...state, favorites };
     case 'FETCH_DATA':
       return { ...state, episodes: action.payload };
     case 'REMOVE_FAVORITE':
-      return {
-        ...state,
-        favorites: state.favorites.filter(item => item.id !== action.payload.id)
-      };
+      favorites = state.favorites.filter(id => id !== action.payload);
+      setFavorites(favorites);
+      return { ...state, favorites };
     default:
       return state;
   }
