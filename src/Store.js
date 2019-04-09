@@ -1,10 +1,5 @@
 import React, { createContext, useReducer } from 'react';
 
-// Store object
-// The context object to which child components will subscribe.
-// Created via the React.createContext() function
-const Store = createContext();
-
 // get/set favorites in local browser storage
 const getFavorites = favorites => {
   const result = localStorage.getItem('favorites');
@@ -13,8 +8,13 @@ const getFavorites = favorites => {
 };
 
 const setFavorites = favorites => {
-  localStorage.setItem('favorites', JSON.stringify(favorites));
+  return localStorage.setItem('favorites', JSON.stringify(favorites));
 };
+
+// Store object
+// The context object to which child components will subscribe.
+// Created via the React.createContext() function
+const Store = createContext();
 
 const initialState = {
   episodes: [],
