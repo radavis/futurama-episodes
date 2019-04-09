@@ -6,13 +6,18 @@ const EpisodeList = ({ episodes, favorites }) => {
     return favorites.find(id => id === episodeId);
   };
 
-  return episodes.map(episode => (
-    <Episode
-      data={episode}
-      favorite={isFavorite(episode.id)}
-      key={episode.id}
-    />
-  ));
+  return (
+    <section className="episode-layout">
+      {episodes.map(episode => (
+        <Episode
+          data={episode}
+          favorite={isFavorite(episode.id)}
+          key={episode.id}
+        />
+      ))}
+      ;
+    </section>
+  );
 };
 
 export default EpisodeList;

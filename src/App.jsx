@@ -1,9 +1,8 @@
+import { Link } from '@reach/router';
 import React, { useContext, useEffect } from 'react';
 import Store from './Store';
 
-const EpisodeList = React.lazy(() => import('./EpisodeList'));
-
-const App = () => {
+const App = ({ children }) => {
   const { state, dispatch } = useContext(Store);
 
   const fetchEpisodes = async () => {
@@ -27,20 +26,22 @@ const App = () => {
 
   return (
     <>
-      {console.log(state)}
       <header className="header">
         <div>
           <h1>Futurama</h1>
           <p>Pick your favorite episodes</p>
         </div>
-        <div>{state.favorites.length} Favorite(s)</div>
+        <ul className="navigation">
+          <li>
+            <Link to="/">All Episodes</Link>
+          </li>
+          <li>
+            <Link to="/favorites">{state.favorites.length} Favorite(s)</Link>
+          </li>
+        </ul>
       </header>
 
-      <section className="episode-layout">
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <EpisodeList episodes={state.episodes} favorites={state.favorites} />
-        </React.Suspense>
-      </section>
+      {children}
     </>
   );
 };

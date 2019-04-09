@@ -47,3 +47,12 @@ code {
 .header * {
   margin: 0;
 }
+
+.navigation {
+  list-style-type: none;
+}
+
+.navigation > li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
