@@ -1,12 +1,14 @@
-# react-context-hook
+# Futurama Episodes
 
-[source](https://medium.com/octopus-labs-london/replacing-redux-with-react-hooks-and-context-part-1-11b72ffdb533)
+[app](http://radavis.github.io/futurama-episodes)
+
+[base tutorial](https://medium.com/octopus-labs-london/replacing-redux-with-react-hooks-and-context-part-1-11b72ffdb533)
 
 ## Example
 
 Store episode data using React Context API and React Hooks.
 
-```js
+```jsx
 // Store.js
 const Store = createContext();
 
