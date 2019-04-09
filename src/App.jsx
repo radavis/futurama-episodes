@@ -13,7 +13,7 @@ const App = () => {
     const data = await fetch(url);
     const json = await data.json();
     const action = {
-      type: 'FETCH_DATA',
+      type: 'FETCH_EPISODES',
       payload: json._embedded.episodes
     };
     return dispatch(action);
