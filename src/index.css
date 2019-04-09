@@ -28,6 +28,11 @@ code {
   background-color: LightSkyBlue;
 }
 
+.episode-details {
+  display: flex;
+  justify-content: space-between;
+}
+
 .header {
   align-items: center;
   background: white;
