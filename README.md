@@ -12,7 +12,7 @@ const Store = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_DATA':
+    case 'FETCH_EPISODES':
       return { ...state, episodes: action.payload };
     default:
       return state;
@@ -44,13 +44,15 @@ const App = () => {
   const { state, dispatch } = useContext(Store);
 
   const fetchEpisodes = async () => {
+    if (state.episodes.length > 0) return false;
+
     const url =
       'https://api.tvmaze.com/singlesearch/shows?q=futurama&embed=episodes';
     const data = await fetch(url);
     const json = await data.json();
 
     const action = {
-      type: 'FETCH_DATA',
+      type: 'FETCH_EPISODES',
       payload: json._embedded.episodes
     };
 
@@ -58,7 +60,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    state.episodes.length === 0 && fetchEpisodes();
+    fetchEpisodes();
   });
 
   return (

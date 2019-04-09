@@ -31,7 +31,7 @@ const reducer = (state, action) => {
       favorites = [...state.favorites, action.payload];
       setFavorites(favorites);
       return { ...state, favorites };
-    case 'FETCH_DATA':
+    case 'FETCH_EPISODES':
       return { ...state, episodes: action.payload };
     case 'REMOVE_FAVORITE':
       favorites = state.favorites.filter(id => id !== action.payload);
