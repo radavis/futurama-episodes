@@ -46,7 +46,7 @@ const App = () => {
   const { state, dispatch } = useContext(Store);
 
   const fetchEpisodes = async () => {
-    if (state.episodes.length > 0) return false;
+    if (state.episodes.length < 0) return false;
 
     const url =
       'https://api.tvmaze.com/singlesearch/shows?q=futurama&embed=episodes';
